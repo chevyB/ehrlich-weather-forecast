@@ -1,4 +1,4 @@
-# Welcome to SVCall project 👏
+# Welcome to 24 Hours Code Challenge | Weather Forecast 👏
 
 ## 📌 Prerequisites
 
