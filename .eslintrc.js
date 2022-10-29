@@ -27,10 +27,9 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': ['off'],
     'react/jsx-uses-react': ['off'],
-    'react/jsx-props-no-spreading': ['off'],
+    'react/jsx-props-no-spreading': ['warn'],
     'react/no-unescaped-entities': ['off'],
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'warn',
-    '@typescript-eslint/explicit-function-return-type': 'off',
   },
 };
