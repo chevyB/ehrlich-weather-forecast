@@ -1,16 +1,15 @@
-import { RouterProvider } from 'react-router-dom';
-import { QueryClientProvider } from 'react-query';
-import { router } from './routes';
-import { queryClient } from './configs/queryClient';
-import { ReactQueryDevtools } from 'react-query/devtools';
+/* eslint-disable react/prop-types */
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from 'src/routes';
+import AuthProvider from './providers/Auth0';
 
-function App(): React.ReactElement {
+export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} fallbackElement={<div>loading</div>} />
-      <ReactQueryDevtools />
-    </QueryClientProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
-
-export default App;
