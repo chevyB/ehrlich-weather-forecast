@@ -41,7 +41,6 @@ To run this project, you will need to add the following environment variables to
 | ------------------------------- | ----------------------------------------------------------------- |
 | `REACT_APP_AUTH0_DOMAIN`        | Auth0 DOMAIN of application                                       |
 | `REACT_APP_AUTH0_CLIENT_ID`     | Auth0 CLIENT ID of application                                    |
-| `REACT_APP_AUTH0_AUDIENCE`      | Auth0 AUDIENCE of application                                     |
 
 ## ✍️ `package.json` scripts
 

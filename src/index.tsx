@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import Template from './components/templates/template';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import QueryProvider from './providers/QueryClient';
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -10,9 +11,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Template>
+    <QueryProvider>
       <App />
-    </Template>
+      <ReactQueryDevtools />
+    </QueryProvider>
   </React.StrictMode>
 );
 
