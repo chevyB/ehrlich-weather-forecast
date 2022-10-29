@@ -1,11 +1,18 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'src/components/atoms/button';
 import Template from 'src/components/templates/template';
 import { useWeatherProvider } from 'src/providers/WeatherProvider';
 
 const Weather = (): React.ReactElement => {
-  const { weather }: { weather: any } = useWeatherProvider();
   const navigate = useNavigate();
+  const { weather }: { weather: any } = useWeatherProvider();
+
+  useEffect(() => {
+    if (typeof weather === 'object' && Object.keys(weather).length === 0) {
+      navigate('/home');
+    }
+  }, [weather]);
 
   return (
     <Template>

@@ -30,7 +30,7 @@ module.exports = {
     'react/jsx-props-no-spreading': ['off'],
     'react/no-unescaped-entities': ['off'],
     '@typescript-eslint/no-floating-promises': 'off',
-    '@typescript-eslint/strict-boolean-expressions': 'warn',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
   },
 };
