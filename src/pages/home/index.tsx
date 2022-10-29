@@ -14,6 +14,7 @@ const HomePage = (): React.ReactElement => {
   const key = process.env.REACT_APP_WEATHER_MAP_APPID ?? '';
   const { setWeather } = useWeatherProvider();
   const { user }: any = useAuth0();
+  const [fetching, setFetching] = useState(false);
   const [city, setCity] = useState<string>('');
 
   const form = useForm({
@@ -30,7 +31,8 @@ const HomePage = (): React.ReactElement => {
   };
 
   const getWeather = async () => {
-    if (city) {
+    setFetching(true);
+    try {
       const { data } = await weatherApi.get('/geo/1.0/direct', {
         params: {
           q: city,
@@ -39,8 +41,9 @@ const HomePage = (): React.ReactElement => {
         },
       });
 
-      if (!data.length) {
+      if (!data.length || data.cod === '400') {
         form.setErrors({ city: 'Please input valid city' });
+        setFetching(false);
       }
 
       const { data: weather } = await weatherApi.get('/data/2.5/weather', {
@@ -52,8 +55,6 @@ const HomePage = (): React.ReactElement => {
         },
       });
 
-      console.log({ weathertest: weather });
-
       setWeather({
         date: moment().format('MM/DD/YYYY'),
         temp: weather.main.temp,
@@ -64,11 +65,16 @@ const HomePage = (): React.ReactElement => {
       });
 
       navigate('/weather');
+    } catch (error) {
+      form.setErrors({ city: 'Please input valid city' });
+      setFetching(false);
     }
   };
 
   useEffect(() => {
-    getWeather();
+    if (city.length) {
+      getWeather();
+    }
   }, [city]);
 
   return (
@@ -82,8 +88,8 @@ const HomePage = (): React.ReactElement => {
         >
           https://github.com/{user?.nickname}
         </a>
-        <div className="flex items-center justify-center mt-[50px] mb-[20px] w-full">
-          <form onSubmit={form.onSubmit(formSubmit)}>
+        <form onSubmit={form.onSubmit(formSubmit)}>
+          <div className="flex flex-col items-center justify-center mt-[50px] mb-[20px] w-full">
             <div className="relative text-gray-600 focus-within:text-gray-400">
               <span className="absolute inset-y-0 left-0 flex items-center pl-2">
                 <SearchIcon />
@@ -96,14 +102,17 @@ const HomePage = (): React.ReactElement => {
                 {...form.getInputProps('city')}
               />
             </div>
-            {form.errors.city && (
-              <div className="text-red-500 text-left">
-                Please input valid city
-              </div>
-            )}
-          </form>
-        </div>
-        <Button type="submit">Display Weather</Button>
+            <div>
+              {form.errors.city && (
+                <div className="text-red-500 text-left">
+                  Please input valid city
+                </div>
+              )}
+              {fetching && <div className="text-left">Fetching data ...</div>}
+            </div>
+          </div>
+          <Button type="submit">Display Weather</Button>
+        </form>
       </div>
     </Template>
   );
