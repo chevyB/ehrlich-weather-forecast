@@ -41,6 +41,8 @@ To run this project, you will need to add the following environment variables to
 | ------------------------------- | ----------------------------------------------------------------- |
 | `REACT_APP_AUTH0_DOMAIN`        | Auth0 DOMAIN of application                                       |
 | `REACT_APP_AUTH0_CLIENT_ID`     | Auth0 CLIENT ID of application                                    |
+| `REACT_APP_WEATHER_MAP_DOMAIN`  | Weather Map Domain                                                |
+| `REACT_APP_WEATHER_MAP_APPID`   | Weather Map App id                                                |
 
 ## ✍️ `package.json` scripts
 
