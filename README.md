@@ -77,4 +77,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 - [TailwindCSS](https://tailwindcss.com/)
 - [Eslint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
-- [React Query](https://react-query-v3.tanstack.com/)
+- [Mantine Form](https://mantine.dev/)
