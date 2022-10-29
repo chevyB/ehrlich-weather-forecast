@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import Button from 'src/components/atoms/button';
 import Template from 'src/components/templates/template';
+import { useWeatherProvider } from 'src/providers/WeatherProvider';
 
 const Weather = (): React.ReactElement => {
+  const { weather }: { weather: any } = useWeatherProvider();
   const navigate = useNavigate();
 
   return (
@@ -23,19 +25,19 @@ const Weather = (): React.ReactElement => {
           <div className="p-1 border border-gray-300 hidden lg:inline-flex">
             Humidity
           </div>
-          <div className="p-1 border border-gray-300">09/01/2020</div>
-          <div className="p-1 border border-gray-300">75</div>
+          <div className="p-1 border border-gray-300">{weather.date}</div>
+          <div className="p-1 border border-gray-300">{weather.temp}</div>
           <div className="p-1 border border-gray-300 hidden lg:inline-flex">
-            Sky is clear
+            {weather.description}
           </div>
           <div className="p-1 border border-gray-300 hidden lg:inline-flex">
-            Clear
+            {weather.main}
           </div>
           <div className="p-1 border border-gray-300 hidden lg:inline-flex">
-            1023.68
+            {weather.pressure}
           </div>
           <div className="p-1 border border-gray-300 hidden lg:inline-flex">
-            100
+            {weather.humidity}
           </div>
         </div>
         <div className="mt-[40px] flex justify-end">
